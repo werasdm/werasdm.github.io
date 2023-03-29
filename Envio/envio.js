@@ -23,6 +23,7 @@ function keyTyped() {
     img2.loadPixels();
     var data = canvas.toDataURL('image/png').replace(/data:image\/png;base64,/, '');
     console.log(data);
+    $.post('https://werasdm.github.io/Recibo', data, function(result) {console.log("data sent", result);});
   }
 }
 
@@ -31,6 +32,7 @@ function handleFile(file) {
   if (file.type === 'image') {
     img = createImg(file.data, '');
     img.hide();
+    console.log("aqui  --->" + file.data.replace(/data:image\/png;base64,/, ''));
   } else {
     img = null;
   }
