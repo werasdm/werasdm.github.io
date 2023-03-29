@@ -23,7 +23,7 @@ function keyTyped() {
     img2.loadPixels();
     var data = canvas.toDataURL('image/png').replace(/data:image\/png;base64,/, '');
     console.log(data);
-    //$.post('https://werasdm.github.io/Recibo', data, function(result) {console.log("data sent", result);});
+    $.post('https://werasdm.github.io/Recibo', data, function(result) {console.log("data sent", result);});
   }
 }
 
