@@ -15,7 +15,7 @@ function setup() {
   input = createFileInput(handleFile);
   input.position(0, 0);
   button = createButton('enviar');
-  button.position(0, 30);
+  button.position(0, 50);
   button.mousePressed(enviarImg);
   p5lm = new p5LiveMedia(this, "DATA", null, "uninhobananamovelvimiv");
   p5lm.on('data', gotData);
