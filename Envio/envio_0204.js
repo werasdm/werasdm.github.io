@@ -2,7 +2,6 @@
 // Open this sketch up 2 times to send data back and forth
 let input;
 let img;
-let x = 250;
 let comparabotao = true;
 let mudancabotao = false;
 let envio;
@@ -29,11 +28,10 @@ function draw() {
   background(220);
    if (img) {
     imageMode(CENTER);
-    image(img, 0, 0);
+    image(img, 250, 250);
   }
     if(mudancabotao == comparabotao){
-    desenharBola();
-    x=x+10;
+    enviarImg();
     comparabotao = !comparabotao;
   }
 }
@@ -47,8 +45,7 @@ function gotData(data, id) {
   
   // If it is JSON, parse it
   let d = JSON.parse(data);
-  x = d.x;
-  y = d.y;
+
 }
 
 
@@ -64,12 +61,8 @@ function handleFile(file) {
   dataToSend = {a: file.data, b: file.name};
 }
 
-//function enviarImg() {
-//  // Have to send string
-//  p5lm.send(JSON.stringify(dataToSend));
-  
-//}
-
-function desenharBola(){
- circle(250,250,250); 
+function enviarImg() {
+  // Have to send string
+  p5lm.send(JSON.stringify(dataToSend));
+  print("enviou \o/");
 }
