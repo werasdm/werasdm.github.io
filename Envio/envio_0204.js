@@ -2,8 +2,9 @@
 // Open this sketch up 2 times to send data back and forth
 let input;
 let img;
-let x = 0;
-let y = false;
+let x = 250;
+let comparabotao = true;
+let mudancabotao = false;
 let envio;
 let button;
 let dataToSend;
@@ -17,7 +18,7 @@ function setup() {
   button = createButton('enviar');
   button.position(0, 50);
   button.mousePressed(function(){
-    y = !y;
+    mudancabotao = !mudancabotao;
   });
   p5lm = new p5LiveMedia(this, "DATA", null, "uninhobananamovelvimiv");
   p5lm.on('data', gotData);
@@ -28,10 +29,12 @@ function draw() {
   background(220);
    if (img) {
     imageMode(CENTER);
-    image(img, 250, 250);
+    image(img, 0, 0);
   }
-    if(y){
-  desenharBola();
+    if(mudancabotao == comparabotao){
+    desenharBola();
+    x=x+10;
+    comparabotao = !comparabotao;
   }
 }
 
