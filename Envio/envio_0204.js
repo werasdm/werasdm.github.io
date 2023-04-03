@@ -63,6 +63,7 @@ function handleFile(file) {
 
 function enviarImg() {
   // Have to send string
+  print("enviou");
   p5lm.send(JSON.stringify(dataToSend));
-  print("enviou \o/");
+  print("enviou2");
 }
