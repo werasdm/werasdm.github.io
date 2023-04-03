@@ -3,7 +3,7 @@
 let input;
 let img;
 let x = 0;
-let y = 0;
+let y = false;
 let envio;
 let button;
 let dataToSend;
@@ -16,7 +16,9 @@ function setup() {
   input.position(0, 0);
   button = createButton('enviar');
   button.position(0, 50);
-  button.mousePressed(enviarImg);
+  button.mousePressed(function(){
+    y = !y;
+  });
   p5lm = new p5LiveMedia(this, "DATA", null, "uninhobananamovelvimiv");
   p5lm.on('data', gotData);
   p5lm.on('disconnect', gotDisconnect);
@@ -27,6 +29,9 @@ function draw() {
    if (img) {
     imageMode(CENTER);
     image(img, 250, 250);
+  }
+    if(y){
+  desenharBola();
   }
 }
 
@@ -56,9 +61,12 @@ function handleFile(file) {
   dataToSend = {a: file.data, b: file.name};
 }
 
-function enviarImg() {
+//function enviarImg() {
+//  // Have to send string
+//  p5lm.send(JSON.stringify(dataToSend));
   
-  // Have to send string
-  p5lm.send(JSON.stringify(dataToSend));
-  
+//}
+
+function desenharBola(){
+ circle(250,250,250); 
 }
