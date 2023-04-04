@@ -9,7 +9,7 @@ let envio;
 let p5lm;
 
 function setup() {
-  p5lm = new p5LiveMedia(this, "DATA", null, "uninhobananamovelvimiv");
+  p5lm = new p5LiveMedia(this, "DATA", null, "amorinhabjork");
   p5lm.on('data', gotData);
   p5lm.on('disconnect', gotDisconnect);
 }
@@ -17,7 +17,7 @@ function setup() {
 function draw() {
   if (img) {
     image(img, 0, 0, width, height);
-    img.save('photo', 'png');
+    //img.save('photo' + x, 'png');
     noLoop();
   }
 }
@@ -32,7 +32,7 @@ function gotData(data, id) {
   // If it is JSON, parse it
   let d = JSON.parse(data);
   img = loadImage(d.a, '');
-  img.hide();
+  //img.hide();
   x++;
   //save(img, d.b + ".png");
 }
