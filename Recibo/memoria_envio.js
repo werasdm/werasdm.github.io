@@ -1,6 +1,7 @@
 // This is a test of the data sharing capabilities of p5LiveMedia webrtc library and associated service.
 // Open this sketch up 2 times to send data back and forth
-
+let gatilho = false;
+let verifica = true;
 let x = 0;
 let y = 10;
 let img;
@@ -15,10 +16,13 @@ function setup() {
 }
 
 function draw() {
-  if (img) {
-    image(img, 0, 0, width, height);
-    //img.save('photo' + x, 'png');
-    noLoop();
+  if(img){
+   image(img, 0, 0, width, height); 
+  }
+  
+  if (gatilho == verifica) {
+    img.save('photo' + x, 'png');
+    verifica = !verifica;
   }
 }
 
@@ -31,8 +35,9 @@ function gotData(data, id) {
   
   // If it is JSON, parse it
   let d = JSON.parse(data);
+  print(d.a);
+  print(x);
   img = loadImage(d.a, '');
-  //img.hide();
   x++;
-  //save(img, d.b + ".png");
+  gatilho = !gatilho;
 }
