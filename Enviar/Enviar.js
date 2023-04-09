@@ -6,6 +6,8 @@ let comparabotao = true;
 let mudancabotao = false;
 let envio;
 let button;
+let dataToSend;
+let c;
 
 
 //redimencionar a imagem
@@ -16,7 +18,7 @@ let w, h;
 let p5lm;
 
 function setup() {
-  let myCanvas = createCanvas(350, 350);
+  c = createCanvas(350, 350);
   input = createFileInput(handleFile);
   input.position(0, 0);
   button = createButton('enviar');
@@ -53,6 +55,8 @@ function draw() {
     }
    }
     if(mudancabotao == comparabotao){
+    c.hint(DISABLE_ASYNC_SAVEFRAME);
+    dataToSend = { a: c.elt.toDataURL('image/png')};
     enviarImg();
     comparabotao = !comparabotao;
   }
@@ -84,7 +88,6 @@ function handleFile(file) {
 
 function enviarImg() {
   // Have to send string
-  let dataToSend = { a: canvas.toDataURL('image/png')};
   print(dataToSend);
   print("enviou");
   p5lm.send(JSON.stringify(dataToSend));

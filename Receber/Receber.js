@@ -21,8 +21,9 @@ function draw() {
   }
   
   if (gatilho == verifica) {
-    img.save('photo' + x, 'png');
+    img.save('photo' + x, 'jpg');
     verifica = !verifica;
+    img = '';
   }
 }
 
