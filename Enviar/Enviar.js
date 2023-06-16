@@ -1,11 +1,13 @@
 let otherCanvas;
 
 let input;
+let bg;
 let img;
 let comparabotao = true;
 let mudancabotao = false;
 let envio;
 let button;
+let t
 
 
 //redimencionar a imagem
@@ -17,8 +19,9 @@ let w, h;
 
 function setup() {
   let myCanvas = createCanvas(500, 500);
+  bg = loadImage("assets/BG.png");
   input = createFileInput(handleFile);
-  input.position(0, 0);
+  input.position(150, 350);
   button = createButton('enviar');
   button.position(0, 50);
   button.mousePressed(function(){
@@ -31,7 +34,7 @@ function setup() {
 }
 
 function draw() {
- background(220);
+ image(bg,0,0,500,500);
   if (img) {
     imageMode(CENTER);
     
