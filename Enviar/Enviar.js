@@ -27,7 +27,7 @@ function setup() {
   button.mousePressed(function(){
     mudancabotao = !mudancabotao;
   });
-  let p5l = new p5LiveMedia(this, "CANVAS", myCanvas, "e4LTqKI8Q");
+  let p5l = new p5LiveMedia(this, "CANVAS", myCanvas, "agoravai");
   p5lm = new p5LiveMedia(this, "DATA", null, "amorinhabjork");
   //p5lm.on('data', gotData);
   //p5l.on('stream', gotStream);
