@@ -34,6 +34,7 @@ function setup() {
   p5lm = new p5LiveMedia(this, "DATA", null, "amorinhabjork");
   //p5lm.on('data', gotData);
   //p5l.on('stream', gotStream);
+  print(p5l.socket);
 }
 
 function draw() {
@@ -81,7 +82,7 @@ function draw() {
 
 
 function enviarImg() {
-  p5lm.send(JSON.stringify('a'));
+  p5lm.send(JSON.stringify(p5l.socket.id));
   print("enviou2");
 }
 
