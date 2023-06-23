@@ -11,10 +11,11 @@ let button;
 let tempo=0;
 let st=false;
 let fechaaguia;
+let acabou = false;
 
 
-  //redimencionar a imagem
-  let picV;
+//redimencionar a imagem
+let picV;
 let picH;
 let w, h;
 
@@ -26,10 +27,11 @@ function setup() {
   fechaaguia = loadImage("assets/Salvo.png");
   input = createFileInput(handleFile);
   input.position(150, 350);
-  button = createButton('enviar');
+  button = createButton('Enviar');
   button.position(150, 380);
   button.mousePressed(function() {
     mudancabotao = !mudancabotao;
+    button.style('background-color', '#8EFFB7');
   }
   );
   p5l = new p5LiveMedia(this, "CANVAS", myCanvas, "agoravai");
@@ -41,21 +43,18 @@ function setup() {
 
 function draw() {
   image(bg, 0, 0, 500, 500);
-  if(st == true){
-  tempo++;
+  if (st == true) {
+    tempo++;
   }
   if (tempo>45) {
     button.show();
   } else {
     button.hide();
   }
-  if (tempo>65){
-  
-  }
   if (img) {
     st=true;
     noStroke();
-    rect(0,0,500);
+    rect(0, 0, 500);
     imageMode(CENTER);
     //Redimencionar a imagem
     // Vertical
@@ -80,7 +79,13 @@ function draw() {
       comparabotao = !comparabotao;
     }
   }
+  if (acabou == true) {
+    image(fechaaguia, width/2, height/2, width, height);
+    button.hide();
+    input.hide();
+  }
 }
+
 
 
 function enviarImg() {
@@ -89,9 +94,12 @@ function enviarImg() {
 }
 
 function gotData(data, id) {
-  image(fechaaguia, width/2, height/2, width, height);
-  button.hide();
-  input.hide();
+  print('>>>>>>>>>>>>>>'+data);
+  let chave = 'fecha';
+  if (data == chave){
+  acabou = true;
+  print('aaaaaaa');
+  }
 }
 
 function handleFile(file) {
