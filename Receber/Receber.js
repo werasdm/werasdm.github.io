@@ -1,12 +1,16 @@
 // This is the second test of the p5LiveMedia webrtc library and associated service.
 // Open this sketch up 2 times to send canvas video back and forth
 let myCanvas;
-let otherCanvas;
+let otherCanvas = [];
+let canvasToSave;
+let canvasReceive;
 let img;
 let gatilho = false;
 let verifica = true;
-let salvar;
+let fecha = false;
 let x = 0;
+let otherVideo;
+let t = 0;
 
 function setup() {
   myCanvas = createCanvas(400, 400);
@@ -17,38 +21,36 @@ function setup() {
 }
 
 function draw() {
-  if(img){
-  image(img, 0, 0, 400, 400);
+  if (otherVideo != null) {
+    image(otherVideo, 0, 0, 400, 400);
   }
   if (gatilho == verifica) {
-    //salvar = get();
-    //print(salvar);
-    img.save('photo' + x, 'jpg');
-    verifica = !verifica;
-    x++
-    //print(salvar);
-    myCanvas.clear();
+    print('aaaaaaaaaaaaaaaaaaaaa');
+    saveFrames('photo' + x, 'jpg', 1, 1);
+    x++;
+    fecha = true;
+    gatilho = false;
+  }
+  if ( fecha == false) {
+    print('a');
+    t = 0;
+  } else {
+    print('b');
+    t++;
+  }
+  if (t==50){
+    p5lm.send(JSON.stringify('fecha'));
+    fecha = false;
+  }
   }
 
-}
+  function gotStream(stream, id) {
+    fecha = false;
+    otherVideo = stream;
 
-// We got a new stream!
-// We got a new stream!
-function gotStream(stream, id) {
-  // This is just like a video/stream from createCapture(VIDEO)
-  otherCanvas = stream;
-  
-  //otherCanvas.id is the unique identifier for this peer
-  //otherCanvas.hide();
-}
+    //otherCanvas.push(canvasReceive);
+  }
 
 function gotData(data, id) {
-  print(id + ":" + data);
-  img = otherCanvas.get();
-  gatilho = !gatilho;
-}
-
-function gotDisconnect(id) {
-  print(id + ": disconnected");
-  img.reset();
+  gatilho = true;
 }
