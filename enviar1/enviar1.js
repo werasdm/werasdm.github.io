@@ -90,6 +90,8 @@ function enviarImg() {
 
 function gotData(data, id) {
   image(fechaaguia, width/2, height/2, width, height);
+  button.hide();
+  input.hide();
 }
 
 function handleFile(file) {
